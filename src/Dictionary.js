@@ -9,6 +9,7 @@ export default function Dictionary(props) {
   let [results, setResults] = useState(null);
   let [loaded, setloaded] = useState(false);
   let [photos, setPhotos] = useState(null);
+  let [error, setError] = useState(null);
 
   function handleDictionaryResponse(response) {
     setResults(response.data[0]);
@@ -18,11 +19,16 @@ export default function Dictionary(props) {
     setPhotos(response.data.photos);
   }
 
+  function handleError(error) {
+    setError(error.response?.data?.message);
+  }
+
   function search() {
+    setError(null);
     //documentation:https://dictionaryapi.dev/
 
     let apiUrl = ` https://api.dictionaryapi.dev/api/v2/entries/en_US/${keyword}`;
-    axios.get(apiUrl).then(handleDictionaryResponse);
+    axios.get(apiUrl).then(handleDictionaryResponse).catch(handleError);
 
     let pexelsApiKey =
       "563492ad6f917000010000013802525b422b40cab9470c85dc49b34f";
@@ -60,6 +66,7 @@ export default function Dictionary(props) {
           <div className="hint">
             suggested words: sunset, wine, yoga, plant...
           </div>
+          {error && <div className="error">{error}</div>}
         </section>
         <Results results={results} />
         <Photos photos={photos} />
