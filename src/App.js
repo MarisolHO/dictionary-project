@@ -17,7 +17,25 @@ export default function App() {
           <Dictionary defaultKeyword="sunset" />
         </main>
         <footer className="App-footer">
-          <small>Coded by Marisol HO</small>
+          <small>
+            This project was coded by Marisol HO and is{" "}
+            <a
+              href="https://github.com/MarisolHO/dictionary-project"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              open-sourced on GitHub
+            </a>{" "}
+            {""}
+            and{" "}
+            <a
+              href="https://thriving-longma-626bf6.netlify.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              hosted on Netlify
+            </a>
+          </small>
         </footer>
       </div>
     </div>
